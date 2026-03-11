@@ -5,6 +5,8 @@ site/resources/_gen/
 
 # PocketBase
 pb_data/*.db
+pb_data/*.db-shm
+pb_data/*.db-wal
 pb_data/storage/
 pb_data/logs/
 pb_data/backups/

@@ -20,6 +20,7 @@ function triggerHugoBuild() {
     headers: {
       Authorization: "Bearer " + __ENV["GITHUB_TOKEN"],
       Accept: "application/vnd.github+json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ ref: "main" }),
   });
