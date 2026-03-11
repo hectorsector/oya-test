@@ -3,4 +3,4 @@ languageCode = 'en-us'
 title = 'My New Hugo Project'
 theme = 'ananke'
 [params]
-  pocketbaseURL = "http://127.0.0.1:8090"
+  pocketbaseURL = "https://oya-cms.fly.dev"
