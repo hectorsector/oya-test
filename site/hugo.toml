@@ -1,4 +1,4 @@
-baseURL = 'https://hectorsector.github.io/'
+baseURL = 'https://hectorsector.github.io/oya-test'
 languageCode = 'en-us'
 title = 'My New Hugo Project'
 theme = 'ananke'
