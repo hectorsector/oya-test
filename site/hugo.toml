@@ -1,6 +1,6 @@
 baseURL = 'https://hectorsector.github.io/oya-test'
 languageCode = 'en-us'
-title = 'My New Hugo Project'
-theme = 'ananke'
+title = 'Orlando Youth Alliance'
+theme = 'blowfish'
 [params]
   pocketbaseURL = "https://oya-cms.fly.dev"
