@@ -23,4 +23,4 @@ enableCodeCopy = false
   layout = "hero"
   homepageImage = "img/CoverImageOya.jpg"
   showRecent = false
-  disableHeroImageFilter = false
+  disableHeroImageFilter = true
