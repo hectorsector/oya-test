@@ -2,12 +2,27 @@
 
 Hugo + PocketBase site for [Orlando Youth Alliance](https://orlandoyouthalliance.org/).
 
-## Dev
+## Dev Setup
+
+### Prerequisites
+- [Hugo](https://gohugo.io/installation/) (extended edition)
+- [PocketBase](https://pocketbase.io/docs/) binary on your PATH
+- [1Password CLI](https://developer.1password.com/docs/cli/) (needed to load `cms/.env` secrets locally)
+
+### Start the dev environment
 
 ```bash
-cd site
-hugo server --ignoreCache --noHTTPCache
-# serves at http://localhost:1313/oya-test/
+make dev
+# Hugo serves at http://localhost:1313
+# PocketBase admin at http://127.0.0.1:8090/_/
+```
+
+Other useful commands:
+```bash
+make build   # production Hugo build
+make admin   # open PocketBase admin UI in browser
+make open    # open local Hugo site in browser
+make clean   # remove build artifacts
 ```
 
 ---
@@ -50,3 +65,24 @@ hugo server --ignoreCache --noHTTPCache
 
 ### Key rule
 To override any theme partial/layout, copy it to the same relative path under `site/layouts/` and edit there. Hugo will use your version over the theme's.
+
+---
+
+## CMS (Production)
+
+The `cms/` directory contains the production PocketBase deployment:
+- Hosted on **Fly.io** (`cms/fly.toml`)
+- Built with `cms/Dockerfile`
+- On every content change (create/update/delete), `cms/pb_hooks/on_content_change.pb.js` triggers a GitHub Actions workflow dispatch, which rebuilds and deploys the Hugo site
+
+### Environment / Secrets
+
+`cms/.env` stores a 1Password reference for the GitHub token used by the webhook:
+
+```
+GITHUB_TOKEN="op://Personal/github pbtoken/credential"
+```
+
+To run the CMS locally, you need the [1Password CLI](https://developer.1password.com/docs/cli/) and access to the Personal vault. In production, the secret is set directly as a Fly.io secret (`fly secrets set GITHUB_TOKEN=...`).
+
+> **Note**: The GitHub Actions workflow URL in `cms/pb_hooks/on_content_change.pb.js` points to the current repo. Update it if the repo is moved.
